@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lane : MonoBehaviour
+public class Info : MonoBehaviour
 {
-    public Zone[] Zones;
-
     // Start is called before the first frame update
     void Start()
     {
