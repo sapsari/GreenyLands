@@ -1,0 +1,30 @@
+
+
+design:
+* 3 difficulty modes (3 stars)
+
+
+
+implementation
+* background should have 3 carbon power plants: oil, coal, gas
+
+
+zones:
+* use real city, forest, desert names with their real data (% of sunny days, effectiveness of wind etc)
+* city/town/village
+* forest, fields, geyzer, river(dam), hills, rocks, desert, lake
+* sea
+
+
+
+ui
+* view info of power plants and compare them with others
+* view info of cities/towns/villages and compare them with others
+* have a big thermometer to show the impact
+* tapping on forest/sea will show species count n extinct count
+
+
+
+
+marketing:
+* share lands with twitter etc
