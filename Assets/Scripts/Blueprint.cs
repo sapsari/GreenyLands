@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BPKind { SolarFarm, WindFarm, Geothermal, Dam, Battery}
+public enum BPKind { 
+    SolarFarm, WindFarm, Geothermal, Dam, Battery,
+    SolarFarmLevel2, SolarFarmLevel3,
+}
 
-public class Blueprint : MonoBehaviour
+public class Blueprint : ScriptableObject
 {
     public BPKind Kind;
 
@@ -12,21 +15,18 @@ public class Blueprint : MonoBehaviour
 
     public Dictionary<BPKind, ZoneKind[]> allowances = new Dictionary<BPKind, ZoneKind[]>()
     {
-        { BPKind.SolarFarm, new ZoneKind[]{
-            ZoneKind.Field, ZoneKind.Forest} },
+        { 
+            BPKind.SolarFarm, new ZoneKind[]
+            {
+                ZoneKind.Field, ZoneKind.Forest
+            }
+        },
+        {
+            BPKind.SolarFarmLevel2, new ZoneKind[]
+            {
+            }
+        }
 
 
     };
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
