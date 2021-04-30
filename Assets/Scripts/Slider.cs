@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class Slider : MonoBehaviour
@@ -10,12 +11,13 @@ public class Slider : MonoBehaviour
     // lanes[0] is front lane, lanes[4] is rear lane
 
     public Info[] Infos;
+    public Button[] ZoneButtons;
 
     Land Land;
     Lane[] Lanes => Land.Lanes;
     int laneIndex = 0;
 
-    Lane CurLane => Lanes[laneIndex];
+    public Lane CurLane => Lanes[laneIndex];
 
 
     // Start is called before the first frame update
@@ -48,14 +50,20 @@ public class Slider : MonoBehaviour
                 return;
 
             Infos[index].gameObject.SetActive(index < CurLane.transform.childCount);
+            ZoneButtons[index].gameObject.SetActive(index < CurLane.transform.childCount);
             if (index >= CurLane.transform.childCount)
                 return;
 
             var p = Infos[index].transform.position;
-            p.x = Camera.WorldToScreenPoint(CurLane.transform.GetChild(index).position).x;
+            var x = Camera.WorldToScreenPoint(CurLane.transform.GetChild(index).position).x;
+            p.x = x;
             Infos[index].transform.position = p;
 
-            var text = Infos[index].transform.GetChild(0).GetComponent<UnityEngine.UI.Text>();
+            p = ZoneButtons[index].transform.position;
+            p.x = x;
+            ZoneButtons[index].transform.position = p;
+
+            var text = Infos[index].transform.GetChild(0).GetComponent<Text>();
             text.text = CurLane.Zones[index].Name;
         }
 

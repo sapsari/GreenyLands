@@ -34,5 +34,6 @@ public class Zone : MonoBehaviour
         var prefab = Prefabs.GetInstanceOf(bp.Kind);
         prefab.transform.parent = transform;
         prefab.transform.localScale = Vector3.one;
+        prefab.transform.localPosition = Vector3.zero;
     }
 }
