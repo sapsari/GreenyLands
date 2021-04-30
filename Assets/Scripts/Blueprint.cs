@@ -7,10 +7,11 @@ public enum BPKind {
     SolarFarmLevel2, SolarFarmLevel3,
 }
 
-public class Blueprint : ScriptableObject
+public class Blueprint : MonoBehaviour
 {
     public BPKind Kind;
 
+    BlueprintManager manager;
     //public Game
 
     public Dictionary<BPKind, ZoneKind[]> allowances = new Dictionary<BPKind, ZoneKind[]>()
@@ -26,7 +27,15 @@ public class Blueprint : ScriptableObject
             {
             }
         }
-
-
     };
+
+    public void Start()
+    {
+        manager = FindObjectOfType<BlueprintManager>();
+    }
+
+    public void OnSelect()
+    {
+        manager.OnSelect(this);
+    }
 }

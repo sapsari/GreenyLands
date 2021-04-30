@@ -9,12 +9,21 @@ public class Land : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Generate();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Generate()
+    {
+        var nameGen = new RandomNameGeneratorLibrary.PlaceNameGenerator();
+
+        foreach (var lane in Lanes)
+            foreach (var zone in lane.Zones)
+                zone.Name = nameGen.GenerateRandomPlaceName();
     }
 }

@@ -54,6 +54,9 @@ public class Slider : MonoBehaviour
             var p = Infos[index].transform.position;
             p.x = Camera.WorldToScreenPoint(CurLane.transform.GetChild(index).position).x;
             Infos[index].transform.position = p;
+
+            var text = Infos[index].transform.GetChild(0).GetComponent<UnityEngine.UI.Text>();
+            text.text = CurLane.Zones[index].Name;
         }
 
     }
