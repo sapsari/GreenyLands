@@ -2,7 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ZoneKind { Village, Town, City, Forest, Field, Hills }
+public enum ZoneKind { 
+    Village, Town, City, Forest, Field, Hills,
+
+    SolarFarm, WindFarm, Geothermal, Dam, Battery,
+    SolarFarmLevel2, SolarFarmLevel3,
+
+    CityCoating, CitySolar,
+}
 
 public class Zone : MonoBehaviour
 {

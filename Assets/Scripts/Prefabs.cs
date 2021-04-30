@@ -22,19 +22,6 @@ public class Prefabs : MonoBehaviour
         
     }
 
-    public GameObject GetInstanceOf(BPKind blueprint)
-    {
-        /*
-        switch (blueprint)
-        {
-            case BPKind.SolarFarm:
-                return null;
-            default:
-                return null;
-
-        }*/
-        return Instantiate(TownPrefabs[0]);
-    }
 
     public GameObject GetInstanceOf(ZoneKind zone)
     {

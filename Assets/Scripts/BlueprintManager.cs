@@ -34,7 +34,7 @@ public class BlueprintManager : MonoBehaviour
             //var bp = ScriptableObject.CreateInstance<Blueprint>();
             //var bp = new Blueprint() { Kind = BPKind.SolarFarm };
             var bp = Blueprints[i];
-            bp.Kind = BPKind.SolarFarm;
+            bp.Kind = ZoneKind.SolarFarm;
             Blueprints[i] = bp;
             
             Widgets[i].SetActive(true);
@@ -69,4 +69,8 @@ public class BlueprintManager : MonoBehaviour
         var button = Selected.GetComponent<Button>();
         button.colors = cb;
     }
+
+
+
+
 }
