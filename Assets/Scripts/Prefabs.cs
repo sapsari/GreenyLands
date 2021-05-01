@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Prefabs : MonoBehaviour
 {
+    public GameObject[] FieldPrefabs;
+    public GameObject[] ForestPrefabs;
+    public GameObject[] FarmPrefabs;
+    public GameObject[] HillPrefabs;
+
     public GameObject[] TownPrefabs;
-
-
     public GameObject[] SolarFarmPrefabs;
 
 
@@ -65,7 +68,7 @@ public class Prefabs : MonoBehaviour
             default:
                 break;
         }
-        return TownPrefabs[0];
+        return ForestPrefabs[0];
         //return null;
     }
     

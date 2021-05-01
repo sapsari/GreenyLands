@@ -12,6 +12,11 @@ public class Lane : MonoBehaviour
     public int DirtyEneryProduction => Zones.Sum(z => z.DirtyEneryProduction);
     public int EnergyConsumption => Zones.Sum(z => z.EnergyConsumption);
 
+    public void FillEnergyArray(int[] energyLevels)
+    {
+        foreach (var zone in Zones)
+            zone.FillEnergyArray(energyLevels);
+    }
 
     // Start is called before the first frame update
     void Start()

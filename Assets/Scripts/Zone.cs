@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum ZoneKind { 
     Invalid,
-    Village, Town, City, Forest, Field, Hills, Farm,
+    Village, Town, City,
+    Forest, Field, Hills, Farm,
 
     SolarFarm, WindFarm, Geothermal, Dam, Battery,
     SolarFarmLevel2, SolarFarmLevel3,
@@ -12,6 +13,8 @@ public enum ZoneKind {
     CityCoating, CitySolar,
 
     CoalPlant, OilPlant, GasPlant,
+
+    Count,
 }
 
 public class Zone : MonoBehaviour
@@ -56,6 +59,20 @@ public class Zone : MonoBehaviour
             else
                 return 0;
         }
+    }
+
+    public void FillEnergyArray(int[] eneryLevels)
+    {
+        var kind = Kind;
+        switch(Kind)
+        {
+            case ZoneKind.SolarFarmLevel2:
+            case ZoneKind.SolarFarmLevel3:
+                kind = ZoneKind.SolarFarm;
+                break;
+        }
+
+        eneryLevels[(int)kind] += Energy;
     }
 
     // Start is called before the first frame update
