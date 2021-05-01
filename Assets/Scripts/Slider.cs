@@ -15,7 +15,7 @@ public class Slider : MonoBehaviour
 
     Land Land;
     Lane[] Lanes => Land.Lanes;
-    int laneIndex = 0;
+    int laneIndex;
 
     public Lane CurLane => Lanes[laneIndex];
 
@@ -24,6 +24,8 @@ public class Slider : MonoBehaviour
     void Start()
     {
         this.Land = this.GetComponent<Land>();
+        Slide(3, forced: true);
+        DOTween.CompleteAll();
     }
 
     // Update is called once per frame
@@ -78,11 +80,13 @@ public class Slider : MonoBehaviour
         Slide(laneIndex + 1);
     }
 
-    void Slide(int laneIndex)
+    void Slide(int laneIndex, bool forced = false)
     {
         const float duration = 1f;
 
         if (laneIndex < 0 || laneIndex >= Lanes.Length)
+            return;
+        else if (!forced && Lanes.Length - laneIndex > Land.ActiveLaneCount)
             return;
         else
             this.laneIndex = laneIndex;

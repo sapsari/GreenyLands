@@ -32,9 +32,10 @@ public class InputManager : MonoBehaviour
             )
             Slider.SlideUp();
 
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
             Land.Lanes[0].Zones[0].Construct(new Blueprint());
-
+        */
 
         previousScrollDelta = Input.mouseScrollDelta.y;
 

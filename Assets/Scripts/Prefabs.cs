@@ -22,8 +22,13 @@ public class Prefabs : MonoBehaviour
         
     }
 
-
     public GameObject GetInstanceOf(ZoneKind zone)
+    {
+        return Instantiate(GetInstanceOfAux(zone));
+    }
+
+
+    GameObject GetInstanceOfAux(ZoneKind zone)
     {
         switch (zone)
         {
@@ -38,6 +43,24 @@ public class Prefabs : MonoBehaviour
             case ZoneKind.Field:
                 break;
             case ZoneKind.Hills:
+                break;
+            case ZoneKind.SolarFarm:
+                break;
+            case ZoneKind.WindFarm:
+                break;
+            case ZoneKind.Geothermal:
+                break;
+            case ZoneKind.Dam:
+                break;
+            case ZoneKind.Battery:
+                break;
+            case ZoneKind.SolarFarmLevel2:
+                break;
+            case ZoneKind.SolarFarmLevel3:
+                break;
+            case ZoneKind.CityCoating:
+                break;
+            case ZoneKind.CitySolar:
                 break;
             default:
                 break;
