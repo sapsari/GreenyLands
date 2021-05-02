@@ -25,6 +25,15 @@ public class BlueprintManager : MonoBehaviour
         
     }
 
+    ZoneKind GetRandom()
+    {
+        var rand = Random.Range(0, 2);
+        if (rand == 0)
+            return ZoneKind.SolarFarm;
+        else
+            return ZoneKind.WindFarm;
+    }
+
     void Generate()
     {
         //Blueprints = new Blueprint[Count];
@@ -34,11 +43,11 @@ public class BlueprintManager : MonoBehaviour
             //var bp = ScriptableObject.CreateInstance<Blueprint>();
             //var bp = new Blueprint() { Kind = BPKind.SolarFarm };
             var bp = Blueprints[i];
-            bp.Kind = ZoneKind.SolarFarm;
+            bp.Kind = GetRandom();
             Blueprints[i] = bp;
             
             Widgets[i].SetActive(true);
-            Widgets[i].transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = bp.Kind.ToString();
+            Widgets[i].transform.GetChild(0).GetComponent<Text>().text = bp.Kind.ToString();
         }
 
         for (int i = Count; i < Widgets.Length; i++)

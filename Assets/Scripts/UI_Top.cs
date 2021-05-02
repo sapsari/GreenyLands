@@ -26,7 +26,7 @@ public class UI_Top : MonoBehaviour
         
     }
 
-    public void Refresh()
+    public void Refresh(out bool isAllGreen)
     {
         int count = Land.EnergyConsumption;
 
@@ -35,6 +35,8 @@ public class UI_Top : MonoBehaviour
 
         Debug.Log("Energy Consumption: " + Land.EnergyConsumption);
         Debug.Log("Solar: " + productions[(int)ZoneKind.SolarFarm]);
+
+        isAllGreen = true;
 
         int i = 0;
         for (; i < count; i++)
@@ -58,16 +60,19 @@ public class UI_Top : MonoBehaviour
             {
                 productions[(int)ZoneKind.GasPlant]--;
                 image.sprite = Gas;
+                isAllGreen = false;
             }
             else if (productions[(int)ZoneKind.OilPlant] > 0)
             {
                 productions[(int)ZoneKind.OilPlant]--;
                 image.sprite = Oil;
+                isAllGreen = false;
             }
             else if (productions[(int)ZoneKind.CoalPlant] > 0)
             {
                 productions[(int)ZoneKind.CoalPlant]--;
                 image.sprite = Coal;
+                isAllGreen = false;
             }
 
         }

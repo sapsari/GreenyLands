@@ -12,6 +12,7 @@ public class Prefabs : MonoBehaviour
     public GameObject[] TownPrefabs;
     public GameObject[] SolarFarmPrefabs;
     public GameObject[] WindFarmPrefabs;
+    public GameObject[] WindFarmOnHillsPrefabs;
 
     public GameObject[] CoalPlantPrefabs;
 
@@ -28,15 +29,15 @@ public class Prefabs : MonoBehaviour
         
     }
 
-    public GameObject GetInstanceOf(ZoneKind zone)
+    public GameObject GetInstanceOf(ZoneKind zone, ZoneKind land)
     {
-        var arr = GetInstanceOfAux(zone);
+        var arr = GetInstanceOfAux(zone, land);
         var rand = Random.Range(0, arr.Length);
         return Instantiate(arr[rand]);
     }
 
 
-    GameObject[] GetInstanceOfAux(ZoneKind zone)
+    GameObject[] GetInstanceOfAux(ZoneKind zone, ZoneKind land)
     {
         switch (zone)
         {
@@ -57,7 +58,8 @@ public class Prefabs : MonoBehaviour
             case ZoneKind.SolarFarm:
                 return SolarFarmPrefabs;
             case ZoneKind.WindFarm:
-                return WindFarmPrefabs;
+                return land == ZoneKind.Hills ?
+                    WindFarmOnHillsPrefabs : WindFarmPrefabs;
             case ZoneKind.Geothermal:
                 break;
             case ZoneKind.Dam:

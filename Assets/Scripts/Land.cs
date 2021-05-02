@@ -10,6 +10,7 @@ public class Land : MonoBehaviour
     public Lane[] Lanes;
 
     public UI_Top UI_Top;
+    public UI_Popup UI_Popup;
 
     public Lane[] ActiveLanes { get; private set; }
     public int ActiveLaneCount { get; private set; }
@@ -28,7 +29,10 @@ public class Land : MonoBehaviour
     {
         Generate();
         SetActiveLaneCount(2);
-        UI_Top.Refresh();
+        UI_Top.Refresh(out _);
+
+        UI_Popup.gameObject.SetActive(true);
+        UI_Popup.Display("Let's build some renewable power plants!", "Begin");
     }
 
     // Update is called once per frame
@@ -101,7 +105,30 @@ public class Land : MonoBehaviour
         {
             var zone = CurLane.Zones[zoneIndex];
             zone.Construct(bp.Kind);
-            UI_Top.Refresh();
+            UI_Top.Refresh(out bool allGreen);
+            if (allGreen)
+            {
+                if (ActiveLaneCount == Lanes.Length)
+                    UI_Popup.Display(
+                    "Congratulations. We are now all powered by renewable energy!",
+                    "Quit",
+                    Application.Quit);
+                else
+                    UI_Popup.Display(
+                    "We have phased out fossil fuel for our energy!\nLet's move to the next region.",
+                    "Next Region",
+                    Progress);
+            }
         }
+    }
+
+    void Progress()
+    {
+        SetActiveLaneCount(ActiveLaneCount + 1);
+        Slider.SlideUp();
+        Slider.SlideUp();
+        Slider.SlideUp();
+        Slider.SlideUp();
+        Slider.SlideUp();
     }
 }

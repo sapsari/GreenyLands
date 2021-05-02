@@ -93,6 +93,8 @@ public class Zone : MonoBehaviour
         if (Data.Allowances.ContainsKey(kind) && !Data.Allowances[kind].Contains(this.Kind))
             return;
 
+        var previousKind = this.Kind;
+
         this.Kind = kind;
         this.Energy = Data.GetEnergyLevelOf(kind);
 
@@ -103,7 +105,7 @@ public class Zone : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        var prefab = Prefabs.GetInstanceOf(kind);
+        var prefab = Prefabs.GetInstanceOf(kind, previousKind);
         var localScale = prefab.transform.localScale;
         var localPos = prefab.transform.localPosition;
         prefab.transform.parent = transform;
