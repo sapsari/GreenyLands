@@ -10,6 +10,9 @@ public class Prefabs : MonoBehaviour
     public GameObject[] HillPrefabs;
 
     public GameObject[] TownPrefabs;
+    public GameObject[] CityPrefabs;
+
+
     public GameObject[] SolarFarmPrefabs;
     public GameObject[] WindFarmPrefabs;
     public GameObject[] WindFarmOnHillsPrefabs;
@@ -46,7 +49,7 @@ public class Prefabs : MonoBehaviour
             case ZoneKind.Town:
                 return TownPrefabs;
             case ZoneKind.City:
-                break;
+                return CityPrefabs;
             case ZoneKind.Forest:
                 return ForestPrefabs;
             case ZoneKind.Field:
