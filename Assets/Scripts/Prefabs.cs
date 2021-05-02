@@ -11,6 +11,9 @@ public class Prefabs : MonoBehaviour
 
     public GameObject[] TownPrefabs;
     public GameObject[] SolarFarmPrefabs;
+    public GameObject[] WindFarmPrefabs;
+
+    public GameObject[] CoalPlantPrefabs;
 
 
     // Start is called before the first frame update
@@ -27,30 +30,34 @@ public class Prefabs : MonoBehaviour
 
     public GameObject GetInstanceOf(ZoneKind zone)
     {
-        return Instantiate(GetInstanceOfAux(zone));
+        var arr = GetInstanceOfAux(zone);
+        var rand = Random.Range(0, arr.Length);
+        return Instantiate(arr[rand]);
     }
 
 
-    GameObject GetInstanceOfAux(ZoneKind zone)
+    GameObject[] GetInstanceOfAux(ZoneKind zone)
     {
         switch (zone)
         {
             case ZoneKind.Village:
                 break;
             case ZoneKind.Town:
-                return TownPrefabs[0];
+                return TownPrefabs;
             case ZoneKind.City:
                 break;
             case ZoneKind.Forest:
-                break;
+                return ForestPrefabs;
             case ZoneKind.Field:
-                break;
+                return FieldPrefabs;
             case ZoneKind.Hills:
-                break;
+                return HillPrefabs;
+            case ZoneKind.Farm:
+                return FarmPrefabs;
             case ZoneKind.SolarFarm:
-                break;
+                return SolarFarmPrefabs;
             case ZoneKind.WindFarm:
-                break;
+                return WindFarmPrefabs;
             case ZoneKind.Geothermal:
                 break;
             case ZoneKind.Dam:
@@ -65,10 +72,13 @@ public class Prefabs : MonoBehaviour
                 break;
             case ZoneKind.CitySolar:
                 break;
+            case ZoneKind.CoalPlant:
+                return CoalPlantPrefabs;
             default:
                 break;
         }
-        return ForestPrefabs[0];
+        Debug.LogWarning(zone + " prefab not found");
+        return ForestPrefabs;
         //return null;
     }
     

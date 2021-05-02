@@ -52413,16 +52413,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c21ff3c8976e3c478830482c5df613d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FieldPrefabs: []
+  FieldPrefabs:
+  - {fileID: 6713737190780658194, guid: 954a35866e12e62408f46ba9308b5983, type: 3}
+  - {fileID: 3332199201349882996, guid: 55863c19b912c224ba81e99f69939cdd, type: 3}
   ForestPrefabs:
   - {fileID: 4753992928629891658, guid: b134fe80500c1b6489b3cde7f644a38a, type: 3}
   - {fileID: 8014612522804121468, guid: 173f5dd836e991e4bb4f8b005ad0fc28, type: 3}
-  FarmPrefabs: []
-  HillPrefabs: []
+  FarmPrefabs:
+  - {fileID: 6713737190780658194, guid: 954a35866e12e62408f46ba9308b5983, type: 3}
+  HillPrefabs:
+  - {fileID: 5281075841555058242, guid: 96d8cbde84f301c40ad241ac489afca3, type: 3}
   TownPrefabs:
   - {fileID: 3435638125896948676, guid: 1fa5e199656fc2645ae54f8ce4ad4f0c, type: 3}
   - {fileID: 3024360488699827123, guid: 706ed72ae194b834aa2be0ca07739dfa, type: 3}
-  SolarFarmPrefabs: []
+  SolarFarmPrefabs:
+  - {fileID: 681238727079685522, guid: 6d0fd740a382a1f4caa7c26a85ce133f, type: 3}
+  WindFarmPrefabs:
+  - {fileID: 7140006680545205793, guid: 3581f96218695c94f97530c0881ff3d5, type: 3}
+  CoalPlantPrefabs:
+  - {fileID: 355145548819468210, guid: fada8781c069af04da5efaae1d95fa19, type: 3}
 --- !u!4 &1276074268
 Transform:
   m_ObjectHideFlags: 0

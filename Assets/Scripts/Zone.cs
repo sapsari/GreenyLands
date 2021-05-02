@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum ZoneKind { 
@@ -89,6 +90,9 @@ public class Zone : MonoBehaviour
 
     public void Construct(ZoneKind kind)
     {
+        if (Data.Allowances.ContainsKey(kind) && !Data.Allowances[kind].Contains(this.Kind))
+            return;
+
         this.Kind = kind;
         this.Energy = Data.GetEnergyLevelOf(kind);
 
@@ -100,8 +104,12 @@ public class Zone : MonoBehaviour
         }
 
         var prefab = Prefabs.GetInstanceOf(kind);
+        var localScale = prefab.transform.localScale;
+        var localPos = prefab.transform.localPosition;
         prefab.transform.parent = transform;
-        prefab.transform.localScale = Vector3.one;
-        prefab.transform.localPosition = Vector3.zero;
+        //prefab.transform.localScale = Vector3.one;
+        prefab.transform.localScale = localScale;
+        //prefab.transform.localPosition = Vector3.zero;
+        prefab.transform.localPosition = localPos;
     }
 }

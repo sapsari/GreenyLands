@@ -27,20 +27,12 @@ public static class Data
         { ZoneKind.WindFarm, 1 },
     };
 
-    public static ZoneKind[][] Allow = new ZoneKind[][]
-    {
-        new ZoneKind[]
-        {
-            
-        }
-    };
-
     public static Dictionary<ZoneKind, ZoneKind[]> Allowances = new Dictionary<ZoneKind, ZoneKind[]>()
     {
         {
             ZoneKind.SolarFarm, new ZoneKind[]
             {
-                ZoneKind.Field, ZoneKind.Forest,
+                ZoneKind.Field, ZoneKind.Forest, ZoneKind.Farm,
             }
         },
         {
