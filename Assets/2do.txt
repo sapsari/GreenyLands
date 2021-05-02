@@ -5,6 +5,7 @@ design:
 
 implementation
 * background should have 3 carbon power plants: oil, coal, gas (+oil rigs)
+* no construction at rear lane
 
 
 zones:

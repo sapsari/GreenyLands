@@ -10,6 +10,7 @@ public enum ZoneKind {
 
     SolarFarm, WindFarm, Geothermal, Dam, Battery,
     SolarFarmLevel2, SolarFarmLevel3,
+    WindFarmLevel2, WindFarmLevel3,
 
     CityCoating, CitySolar,
 
@@ -88,10 +89,10 @@ public class Zone : MonoBehaviour
         
     }
 
-    public void Construct(ZoneKind kind)
+    public bool Construct(ZoneKind kind)
     {
         if (Data.Allowances.ContainsKey(kind) && !Data.Allowances[kind].Contains(this.Kind))
-            return;
+            return false;
 
         var previousKind = this.Kind;
 
@@ -113,5 +114,7 @@ public class Zone : MonoBehaviour
         prefab.transform.localScale = localScale;
         //prefab.transform.localPosition = Vector3.zero;
         prefab.transform.localPosition = localPos;
+
+        return true;
     }
 }

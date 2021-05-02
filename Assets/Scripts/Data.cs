@@ -24,7 +24,11 @@ public static class Data
         { ZoneKind.City, -5 },
 
         { ZoneKind.SolarFarm, 1 },
+        { ZoneKind.SolarFarmLevel2, 2 },
+        { ZoneKind.SolarFarmLevel3, 3 },
         { ZoneKind.WindFarm, 1 },
+        { ZoneKind.WindFarmLevel2, 2 },
+        { ZoneKind.WindFarmLevel3, 3 },
     };
 
     public static Dictionary<ZoneKind, ZoneKind[]> Allowances = new Dictionary<ZoneKind, ZoneKind[]>()
@@ -33,6 +37,7 @@ public static class Data
             ZoneKind.SolarFarm, new ZoneKind[]
             {
                 ZoneKind.Field, ZoneKind.Forest, ZoneKind.Farm,
+                ZoneKind.WindFarm,
             }
         },
         {
@@ -40,7 +45,32 @@ public static class Data
             {
                 ZoneKind.SolarFarm,
             }
-        }
+        },
+        {
+            ZoneKind.SolarFarmLevel3, new ZoneKind[]
+            {
+                ZoneKind.SolarFarmLevel2,
+            }
+        },
+        {
+            ZoneKind.WindFarm, new ZoneKind[]
+            {
+                ZoneKind.Field, ZoneKind.Forest, ZoneKind.Farm, ZoneKind.Hills,
+                ZoneKind.SolarFarm, ZoneKind.SolarFarmLevel2
+            }
+        },
+        {
+            ZoneKind.WindFarmLevel2, new ZoneKind[]
+            {
+                ZoneKind.WindFarm,
+            }
+        },
+        {
+            ZoneKind.WindFarmLevel3, new ZoneKind[]
+            {
+                ZoneKind.WindFarmLevel2,
+            }
+        },
     };
 }
 

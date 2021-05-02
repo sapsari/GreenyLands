@@ -56,8 +56,12 @@ public class Prefabs : MonoBehaviour
             case ZoneKind.Farm:
                 return FarmPrefabs;
             case ZoneKind.SolarFarm:
+            case ZoneKind.SolarFarmLevel2:
+            case ZoneKind.SolarFarmLevel3:
                 return SolarFarmPrefabs;
             case ZoneKind.WindFarm:
+            case ZoneKind.WindFarmLevel2:
+            case ZoneKind.WindFarmLevel3:
                 return land == ZoneKind.Hills ?
                     WindFarmOnHillsPrefabs : WindFarmPrefabs;
             case ZoneKind.Geothermal:
@@ -65,10 +69,6 @@ public class Prefabs : MonoBehaviour
             case ZoneKind.Dam:
                 break;
             case ZoneKind.Battery:
-                break;
-            case ZoneKind.SolarFarmLevel2:
-                break;
-            case ZoneKind.SolarFarmLevel3:
                 break;
             case ZoneKind.CityCoating:
                 break;

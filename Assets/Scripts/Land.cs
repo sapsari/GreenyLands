@@ -72,12 +72,15 @@ public class Land : MonoBehaviour
 
             if (laneIndex == Lanes.Length - 1)
             {
-                for (int i = 1; i < lane.Zones.Length; i++)
+                for (int i = 0; i < lane.Zones.Length; i++)
+                {
                     lane.Zones[i].Construct(getGreenFlat());
+                    lane.Zones[i].Kind = ZoneKind.Invalid;// to prevent construction
+                }
             }
             else
             {
-                for (int i = 1; i < lane.Zones.Length; i++)
+                for (int i = 0; i < lane.Zones.Length; i++)
                     lane.Zones[i].Construct(getGreen());
             }
         }
@@ -86,7 +89,19 @@ public class Land : MonoBehaviour
         rearLane.Zones[0].Construct(ZoneKind.CoalPlant);
 
         var lane2 = Lanes[Lanes.Length - 2];
-        lane2.Zones[1].Construct(ZoneKind.Town);
+        lane2.Zones[Random.Range(0, 3)].Construct(ZoneKind.Town);
+
+        var lane3 = Lanes[Lanes.Length - 3];
+        lane3.Zones[Random.Range(0, 3)].Construct(ZoneKind.Town);
+        lane3.Zones[Random.Range(3, 5)].Construct(ZoneKind.Town);
+
+        var lane4 = Lanes[Lanes.Length - 4];
+        lane4.Zones[Random.Range(0, 3)].Construct(ZoneKind.City);
+        lane4.Zones[Random.Range(3, 5)].Construct(ZoneKind.Town);
+
+        var lane5 = Lanes[Lanes.Length - 5];
+        lane5.Zones[Random.Range(0, 2)].Construct(ZoneKind.City);
+        lane5.Zones[Random.Range(2, 4)].Construct(ZoneKind.City);
 
         ZoneKind getGreen() =>
             getRandom(ZoneKind.Field, ZoneKind.Farm, ZoneKind.Forest, ZoneKind.Hills);
@@ -104,20 +119,26 @@ public class Land : MonoBehaviour
         if(bp != null)
         {
             var zone = CurLane.Zones[zoneIndex];
-            zone.Construct(bp.Kind);
-            UI_Top.Refresh(out bool allGreen);
-            if (allGreen)
+            if (zone.Construct(bp.Kind))
             {
-                if (ActiveLaneCount == Lanes.Length)
-                    UI_Popup.Display(
-                    "Congratulations. We are now all powered by renewable energy!",
-                    "Quit",
-                    Application.Quit);
-                else
-                    UI_Popup.Display(
-                    "We have phased out fossil fuel for our energy!\nLet's move to the next region.",
-                    "Next Region",
-                    Progress);
+
+                UI_Top.Refresh(out bool allGreen);
+                if (allGreen)
+                {
+                    if (ActiveLaneCount == Lanes.Length)
+                        UI_Popup.Display(
+                        "Congratulations. We are now all powered by renewable energy!",
+                        "Quit",
+                        Application.Quit);
+                    else
+                        UI_Popup.Display(
+                        "We have phased out fossil fuel for our energy!\nLet's move to the next region.",
+                        "Next Region",
+                        Progress);
+                }
+
+
+                BlueprintManager.Generate();
             }
         }
     }
@@ -125,10 +146,24 @@ public class Land : MonoBehaviour
     void Progress()
     {
         SetActiveLaneCount(ActiveLaneCount + 1);
-        Slider.SlideUp();
-        Slider.SlideUp();
-        Slider.SlideUp();
-        Slider.SlideUp();
-        Slider.SlideUp();
+        for (int i = 0; i < ActiveLaneCount; i++)
+            Slider.SlideUp();
+
+        var rearLane = Lanes[Lanes.Length - 1];
+        rearLane.Zones[ActiveLaneCount - 2].Construct(ZoneKind.CoalPlant);
+
+        UI_Top.Refresh(out _);
+    }
+
+    public void UpdateConstructionHintArrows()
+    {
+        foreach(var lane in Lanes)
+        {
+            if (lane == CurLane)
+                lane.SetArrowsVisibility(BlueprintManager.Selected == null ? ZoneKind.Invalid
+                    : BlueprintManager.Selected.Kind);
+            else
+                lane.SetArrowsVisibility(ZoneKind.Invalid);
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,16 +35,27 @@ public class BlueprintManager : MonoBehaviour
             return ZoneKind.WindFarm;
     }
 
-    void Generate()
+    ZoneKind[] List = new ZoneKind[]
+    {
+        ZoneKind.SolarFarm,
+        ZoneKind.SolarFarmLevel2,
+        ZoneKind.WindFarm,
+        ZoneKind.WindFarmLevel2,
+    };
+
+    public void Generate()
     {
         //Blueprints = new Blueprint[Count];
+
+        var randoms = List.OrderBy(x => Random.value).Take(3).ToArray();
 
         for (int i = 0; i < Count; i++)
         {
             //var bp = ScriptableObject.CreateInstance<Blueprint>();
             //var bp = new Blueprint() { Kind = BPKind.SolarFarm };
             var bp = Blueprints[i];
-            bp.Kind = GetRandom();
+            //bp.Kind = GetRandom();
+            bp.Kind = randoms[i];
             Blueprints[i] = bp;
             
             Widgets[i].SetActive(true);
@@ -52,6 +64,9 @@ public class BlueprintManager : MonoBehaviour
 
         for (int i = Count; i < Widgets.Length; i++)
             Widgets[i].SetActive(false);
+
+        OnSelect(null);
+        Land.UpdateConstructionHintArrows();
     }
 
     public Blueprint Selected { get; set; }
@@ -65,6 +80,8 @@ public class BlueprintManager : MonoBehaviour
 
         this.Selected = bp;
 
+        if (bp == null)
+            return;
 
         Color color = new Color32(0xBC, 0x54, 0x4B, 0xFF);
         var cb = new ColorBlock();
@@ -77,6 +94,8 @@ public class BlueprintManager : MonoBehaviour
 
         var button = Selected.GetComponent<Button>();
         button.colors = cb;
+
+        Land.UpdateConstructionHintArrows();
     }
 
 

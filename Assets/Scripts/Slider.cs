@@ -100,6 +100,8 @@ public class Slider : MonoBehaviour
             Lanes[i].transform.DOMoveZ(z, duration);
             z += Mathf.Pow(.8f, i - laneIndex + 1) * 100;
         }
-        
+
+
+        Land.UpdateConstructionHintArrows();
     }
 }
