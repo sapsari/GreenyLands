@@ -27,6 +27,22 @@ public class Zone : MonoBehaviour
     public ZoneKind Kind;
     public int Energy;
 
+    public string DisplayName
+    {
+        get
+        {
+            if (Kind == ZoneKind.Village || Kind == ZoneKind.Town || Kind == ZoneKind.City)
+                return Name;
+            else if (Kind == ZoneKind.SolarFarm || Kind == ZoneKind.SolarFarmLevel2 || Kind == ZoneKind.SolarFarmLevel3)
+                return ZoneKind.SolarFarm.ToString();
+            else if (Kind == ZoneKind.WindFarm || Kind == ZoneKind.WindFarmLevel2 || Kind == ZoneKind.WindFarmLevel3)
+                return ZoneKind.WindFarm.ToString();
+            else if (Kind == ZoneKind.CoalPlant || Kind == ZoneKind.GasPlant || Kind == ZoneKind.OilPlant)
+                return Kind.ToString();
+            else
+                return string.Empty;
+        }
+    }
 
     public int GreenEnergyProduction
     {

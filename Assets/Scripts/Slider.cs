@@ -7,7 +7,8 @@ using DG.Tweening;
 public class Slider : MonoBehaviour
 {
     public Camera Camera;
-    
+
+    public UI_Top UI_Top;
     // lanes[0] is front lane, lanes[4] is rear lane
 
     public Info[] Infos;
@@ -66,7 +67,12 @@ public class Slider : MonoBehaviour
             ZoneButtons[index].transform.position = p;
 
             var text = Infos[index].transform.GetChild(0).GetComponent<Text>();
-            text.text = CurLane.Zones[index].Name;
+            text.text = CurLane.Zones[index].DisplayName;
+
+            if (string.IsNullOrEmpty(CurLane.Zones[index].DisplayName))
+                Infos[index].gameObject.SetActive(false);
+            else
+                UI_Top.FillInfoIcon(Infos[index], CurLane.Zones[index]);
         }
 
     }

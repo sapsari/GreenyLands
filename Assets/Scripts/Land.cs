@@ -149,8 +149,12 @@ public class Land : MonoBehaviour
         for (int i = 0; i < ActiveLaneCount; i++)
             Slider.SlideUp();
 
+        var plantType = ZoneKind.OilPlant;
+        if (ActiveLaneCount == 3)
+            plantType = ZoneKind.GasPlant;
+
         var rearLane = Lanes[Lanes.Length - 1];
-        rearLane.Zones[ActiveLaneCount - 2].Construct(ZoneKind.CoalPlant);
+        rearLane.Zones[ActiveLaneCount - 2].Construct(plantType);
 
         UI_Top.Refresh(out _);
     }

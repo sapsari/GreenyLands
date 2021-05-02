@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Info : MonoBehaviour
 {
+    public GameObject[] Icons;
+
     // Start is called before the first frame update
     void Start()
     {

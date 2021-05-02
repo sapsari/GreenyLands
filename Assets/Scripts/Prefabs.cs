@@ -75,6 +75,8 @@ public class Prefabs : MonoBehaviour
             case ZoneKind.CitySolar:
                 break;
             case ZoneKind.CoalPlant:
+            case ZoneKind.GasPlant:
+            case ZoneKind.OilPlant:
                 return CoalPlantPrefabs;
             default:
                 break;

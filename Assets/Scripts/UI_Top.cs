@@ -13,6 +13,8 @@ public class UI_Top : MonoBehaviour
     public Sprite Solar;
     public Sprite Wind;
 
+    public Sprite Energy;
+
 
     // Start is called before the first frame update
     void Start()
@@ -81,6 +83,37 @@ public class UI_Top : MonoBehaviour
         {
             var child = transform.GetChild(i);
             child.gameObject.SetActive(false);
+        }
+    }
+
+
+    public void FillInfoIcon(Info info, Zone zone)
+    {
+        Sprite sprite = null;
+        //if(zone.Energy
+        if (zone.Kind == ZoneKind.SolarFarm || zone.Kind == ZoneKind.SolarFarmLevel2 || zone.Kind == ZoneKind.SolarFarmLevel3)
+            sprite = Solar;
+        else if (zone.Kind == ZoneKind.WindFarm || zone.Kind == ZoneKind.WindFarmLevel2 || zone.Kind == ZoneKind.WindFarmLevel3)
+            sprite = Wind;
+        else if (zone.Kind == ZoneKind.CoalPlant)
+            sprite = Coal;
+        else if (zone.Kind == ZoneKind.GasPlant)
+            sprite = Gas;
+        else if (zone.Kind == ZoneKind.OilPlant)
+            sprite = Oil;
+        else if (zone.Kind == ZoneKind.Village || zone.Kind == ZoneKind.Town || zone.Kind == ZoneKind.City)
+            sprite = Energy;
+
+        var energy = Mathf.Abs(zone.Energy);
+        int i = 0;
+        for (; i < energy; i++)
+        {
+            info.Icons[i].GetComponent<UnityEngine.UI.Image>().sprite = sprite;
+            info.Icons[i].SetActive(true);
+        }
+        for (; i < info.Icons.Length; i++)
+        {
+            info.Icons[i].SetActive(false);
         }
     }
 }

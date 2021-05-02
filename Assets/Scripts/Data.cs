@@ -15,7 +15,7 @@ public static class Data
     public static Dictionary<ZoneKind, int> EneryLevels = new Dictionary<ZoneKind, int>()
     {
         { ZoneKind.CoalPlant, 2 },
-        { ZoneKind.OilPlant, 2 },
+        { ZoneKind.OilPlant, 3 },
         { ZoneKind.GasPlant, 2 },
 
 
